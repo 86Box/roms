@@ -1,4 +1,4 @@
-# 86Box rom repository
+# 86Box ROM repository
 
 This repository contains all ROMs needed by the [86Box](https://github.com/86Box/86Box) emulator.
 
