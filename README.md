@@ -3,7 +3,21 @@
 This repository contains all ROMs needed by the [86Box](https://github.com/86Box/86Box) emulator.
 
 ## Contributing ROMs
-Before new ROMs can be accepted in this repository, the code that uses the ROMs needs to be in the upstream 86Box repository. Once your code is merged, please open a pull request in this repository with your ROM files. This applies for removals as well.
+Before new ROMs can be accepted in this repository, the code that uses the ROMs needs to be in the upstream 86Box repository. Once you've made an 86Box pull request, open a pull request here. This applies to removals as well in inverse.
 
-## Commit messages
-In order to make reading the history and generating release changelogs easy, please state what you've done in the commit message(s), and separate additions and removals to separate commits.
+## Committing guidelines
+- Do not use vague commit messages.
+
+  **Acceptable:**
+  - "Add ASUS P2B-VM ROM"
+  - "Remove ASUS P5B-VM ROM".
+
+  **Unacceptable:**
+  - "Add files via upload"
+  - "Romset update"
+  - "Delete ROM"
+
+- Separate addition and removals to different commits.
+- The subject line shouldn't be longer than 50 characters. If you're having trouble fitting what you did in the subject, consider splitting your changes to multiple commits. If you genuinely need to give a lot of background information and splitting is not appropriate, write it in the description.
+
+If you make no effort to follow these guidelines, your contribution will not be merged until you correct highlighted issues. Don't be ashamed to ask for help if you've made a mistake and don't know how to correct it.
