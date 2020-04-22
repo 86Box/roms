@@ -3,7 +3,9 @@
 This repository contains all ROMs needed by the [86Box](https://github.com/86Box/86Box) emulator.
 
 ## Contributing ROMs
-Before new ROMs can be accepted in this repository, the code that uses the ROMs needs to be in the upstream 86Box repository. Once you've made an 86Box pull request, open a pull request here. This applies to removals as well in inverse.
+Before new ROMs can be accepted in this repository, the code that uses the ROMs needs to be in the upstream 86Box repository. Once you've made an 86Box pull request, open a pull request here. This applies to removals as well in inverse. 
+
+Note that your ROM(s) will not be merged to master until the code is in 86Box master. However, if the development is happening in an upstream branch, a corresponding branch can be created here until the feature is ready for master.
 
 ## Committing guidelines
 - Do not use vague commit messages.
