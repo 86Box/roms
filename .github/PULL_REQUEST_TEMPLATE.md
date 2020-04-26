@@ -3,7 +3,7 @@
 Briefly describe what you are submitting.
 
 # Checklist:
-- [ ] Code that requires these files is in the upstream 86Box repository.
+- [ ] I have opened a pull request in the main 86Box repository.
 - [ ] I have not added any unrelated files to this pull request.
 
 # Your 86Box pull request:
