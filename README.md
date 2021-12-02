@@ -1,6 +1,6 @@
 # 86Box ROM repository
 
-This repository contains all ROMs needed by the [86Box](https://github.com/86Box/86Box) emulator. The recommended way to use this repository is to clone it instead of downloading the tagged releases.
+This repository contains all ROMs needed by the [86Box](https://github.com/86Box/86Box) emulator. For development versions of 86Box, the recommended way to use this repository is to clone it instead of downloading the tagged releases.
 
 ## Contributing ROMs
 Before new ROMs can be accepted in this repository, the code that uses the ROMs needs to be in the upstream 86Box repository. Once you've made an 86Box pull request, open a pull request here. This applies to removals as well in inverse. 
