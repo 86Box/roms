@@ -1,0 +1,449 @@
+			OPSD BIOS ENGINEERING
+
+Intel Corporation, 5200 NE Elam Young Parkway Hillsboro, OR  97214
+				
+DATE: 		December 18, 1995
+
+TO:		Paul Kalendra, IBM, (407) 443-1852
+
+CC:		iPG / OPSD BIOS Engineering
+
+FROM:		OPSD BIOS Engineering
+
+SUBJECT:	Blitzen/Dasher Beta 4.02
+
+
+About This Release
+
+
+o	BIOS 0.02.04.CC0M  Blitzen/Dasher Beta 4.02
+o	BIOS Build ID = 56
+
+o	S3 Trio 64 Video BIOS v1.3-08-21
+	S3 Trio 64PnP Video BIOS v1.0-02-02i
+o	Video Drivers used in testing - 1.41B2
+o	Keyboard used in testing:
+		IBM Trackpoint II Keyboard 101 Key PS/2 style
+		IBM Model M Keyboard (ID 2146096)
+o	Monitor used in testing:  IBM 15V DDC1
+				  IBM 14R 28
+o	Hardfiles used in testing:  IBM Satsuma DSAA-3540
+				    IBM Satsuma DPEA-31080
+o	Operating Systems: MS-DOS 6.22, PC-DOS 7.0, OS/2,
+			   WINDOWS 3.11, and WIN95 installed.
+
+
+Features/Errata Fixed In This Release
+
+Beta 4.02   -	Build 56
+
+* Based on Build 55
+* Fixed corrupted logo on Artist Graphics card (DCS #5101)
+  and Matrox Millenium card
+* Enabled setup to correctly recognize 85Hz refresh for DDC1
+  monitors (DCS #5018)
+* Enabled 32-bit support for enhanced IDE which had been disabled
+  for an OS/2 Warp problem in Jan/Feb 1995 
+* Added 301 Keyboard Error when no K/B connected (DCS #5022)
+* Incorporated a new S3 Trio 64' compatible Video BIOS, version 1.3-08-21.
+* Changed flash update utility to correctly filter keyboard input when
+  interactively inputting vital product data (DCS #5020)
+* Anomalies in changing setup date/time fields corrected (DCS #5021)
+
+Beta 4.01   -   Build 55
+
+* Pulled in fix for Cornerstone card only.  Based on Build 53
+* Corrected problem where S3 video was being initialized when it was not
+  primary video.  This enabled the Cornerstone video adapter to function.
+
+Beta 3.07   -   Build 53
+
+* Pulled in additional files so that BIOS version string is returned when
+  doing INT 15 Function DA8C
+* Fixed config error 162 when the Test Disk is installed and floppy drive
+  is added (DCS #4811)
+
+Beta 3.06   -   Build 52
+
+* Incorporated modified core code that correctly calls a wait loop for status
+  to show K/B input buffer full.  This wait loop is because KBC can't keep 
+  up with faster processors.  This new code fixes problems with remote
+  booting with Token Ring II
+* Incorporated new core code that is more robust
+* Fixed four language files (2 sweden 2 italian)
+* Changed setup code to correctly show DDC1 Monitor Product ID
+* Incorporated new core drive detection algorithm code
+* Changed setup code to correctly display 166MHz processor speed
+
+Beta 3.05   -   Build 51
+
+* Incorporated a new S3 Trio 64' compatible Video BIOS, version 1.3-08-19.
+  This video BIOS corrects problem of not recognizing 2Meg VRAM
+
+
+Beta 3.04   -   Build 50
+
+* Incorporated a new S3 Trio 64' compatible Video BIOS, version 1.3-08-18.
+  This video BIOS corrects a potential VCO lockup condition due to an
+  internal hardware bug on the S3 chips where a capacitor is not properly
+  discharging.
+
+
+Beta 3.01   -   Build 49
+
+* Enhanced checking of master boot records to fail if the first word is a
+  0000h.  This fixes the failures seen on the 602 Boot Disk Test (DCS #3785).
+* Corrected the bypass mechanism to skip any entry into setup if an IBM
+  manufacturing disk is detected.
+* Fixed a condition where an OS/2 installation could fail due to uninitialized
+  CD-ROM media type.  Now the media is defaulted to a hard disk if the CD-ROM
+  is not used as a boot device. (DCS #4328)
+* Incorporated new Video BIOS for both the Trio 64 and 64'.  These new
+  revisions fix the interlace polarity bit and correct corruption at high
+  refresh rates in 1280x1024 due to a slower VCO frequency (DCS #4304).
+* Turned OFF automatic detection of the S3 graphics chip as requested by IBM.
+  Now the compatible mode Video BIOS is used for both chips, and the enhanced
+  PnP functionality of the 64' is not available.
+* Reworked core ATA/ATAPI initialization code to make it much faster and more
+  robust when detecting devices that do not entirely comply with these
+  standard specifications.  This means that several long fixed delays could
+  be removed including the 9 second predelay for IBM's Peagasus hard drive.
+* Incorporated a Power Management fix for a bug that caused the Auto Halt
+  feature to be permanently disabled, thus wasting about 5 watts of power
+  while the CPU is not active.
+
+
+Release 2.0   -   Build 47
+
+* Padded printer services with extra IO reads so that strobe pulse is
+  greater than 2 uSec for DBCS printer compatability.
+* Fixed problem with Int 15h, Func C7h where an uninitialized register
+  could cause invalid data to be returned when the system is configured
+  with less than 16 MB of memory.
+* Added another 3 seconds to the hard disk pre-delay due to sporadic
+  cold start failures on the 1 GB Satsuma Drives.
+* Changed manufacturing defaults to reflect two hard disks installed.
+* Corrected the virus screen bypass algorithim for manufacturing mode.
+* Corrected condition where a bad PnP card would not be flagged.
+
+
+Beta 2.11   -   Build 46
+
+* Modified key-press filtering algorithim for French, Spanish, Italian,
+  and German keyboards.  Now when one of the above languages is flashed,
+  scan codes specific to the non-US keyboard are examined to correctly
+  filter alphanumeric characters.
+* Corrected the IRQ 12 forced allocation that was originally attempted
+  with Build 42.  This allows the mouse port to be used for other
+  peripherals under DOS (such as the numeric keypad).
+* Corrected a problem in the IBM Update Utility where Vital Product Data
+  would be lost if new data was not provided for the update.  Also changed
+  the unattended mode operation so that no output is displayed.
+* Added a new command line switch to the Update Utility.  The '/d' switch
+  provides a mechanism to selectively force individual bytes of CMOS through
+  a file called DEF_CMOS.TXT.  This prevents the end user from having to
+  zap CMOS and loose configuration settings when upgrading to a new build.
+* Added dynamic support for the Trio 64' graphics chip.  Upon startup
+  the BIOS will detect whether a Trio 64 or a 64' is present and install
+  the appropriate Video BIOS.  This feature allows the System BIOS of
+  future products (equiped with the Trio 64') to remain backwards compatible
+  with the system BIOS on current products (equiped with the Trio 64).
+* Changed the logging of memory types to report EDO if only one bank is
+  stuffed.  If the memory types are mixed, setup still reports Fast Page.
+* Incorporated new ATA/ATAPI intialization code.  This greatly reduced boot
+  time since "Shadowed" drives can be properly identified.  However, due
+  to a non-ATA complient 1 GB Satsuma(IBM) drive, a fixed 6 second predelay
+  was added to provide sufficient spin-up time.
+* Incorporated APM Turbo/Deturbo bug fix.
+* Inserted patch so 386MAX memory manager will scan F000 region correctly. 
+
+
+Beta 2.10   -   Build 43
+
+* Fixed Win95 function 02h - setnode 0Bh.  This function passed when
+  the parallel port was set to standard, but failed with BAD PARAMETER
+  when set to ECP or EPP.  Corrected by initializing DMA field to 00h.
+* Added capability for 133 and 150 MHz processor speeds	in setup
+  system summary.
+* Fixed floppy format bugs for Dasher (Int 13 - Function 05). 
+* Changed the allocation philosophy for assigning ISA Legacy resources.
+  Now static motherboard resources are allocated first, followed by
+  ISA Legacy resources, and then dynamic motherboard devices.  This
+  change is a long term fix for the IRQ 15 allocation problem that was
+  patched in Build 41.
+* Corrected mapping of ISA Legacy resources to the ESCD area.
+* Forced mouse resources to be enabled on the 306 controller so that
+  other peripherals can use the mouse port.
+
+
+Beta 2.09   -   Build 40
+
+* Pulled Blitzen up to the tip revisions of all source modules.
+* Added dynamic configuration code for Dasher support.
+* Fixed truncation of Sweedish translation for 'Managed'.
+* Corrected initialization of IBM monitor types in setup.
+* Moved multilingual code page table 850 out of planar to conserve
+  code space.  This table is now dispatched separately.
+* Reworked floppy auto-configuration to flag installation / removal
+  changes only.  Installation defaults to 3.5, 1.44 MB until changed
+  within setup.
+* Added Logo / No Logo command line switch to IBM update utility.
+  This required changes to flash tables and therefore is not backwards
+  compatible with earlier builds.
+  Syntax in CONFIG.SYS:		/L:ON|OFF
+
+
+Beta 2.08   -   Build 38
+
+* Incorporated S3 Video BIOS Version 1.3-08-12-57mhz with the following fixes:
+  - 72 Hz and 75 Hz refresh rate support for VGA mode 12. (DCS #3734)
+  - Increased timeout for NEC DDC1 monitor detection.
+  - Changed font for 0 and á.
+  - M&N changes
+      640x480x8 75 Hz (1 MB RAM) from 20 to 13
+      600x800x8 60 Hz (1 MB RAM) from 14 to 12
+  - Fixed Palette Snoop Feature
+* Turned palette snoop on at startup by default.
+* Added support for PCI burst control in Setup.
+* Added floppy autodetection. (DCS #3782)
+* Added change symbol for floppy or IDE configuration changes.
+* Added support for CD-ROM boot. (DCS #3781)
+* Added Win95 compliant mouse device node.
+* Fixed problem where a PCI BIOS could fail to install.
+* Extended IDE timeout for IBM Satsuma hard drives.
+* Misc. Language updates.
+* Fixed a bug in the Flash Update utility where language files may not open.
+* Removed code that prevented special check for video IRQ enable/disable for
+  secondary PCI video cards.
+* Removed invalid bus check for PCI config space reads/writes.
+* Update to IDE Set Features Command input parameter. (DCS #3786)
+  Now mode 3 = 0Bh and mode 4 = 0Ch
+* Several fixes to pass WIN95 BIOSTEST. GET/SET parameter validation is done.
+  Floppy device node changes to match what WIN95 expected.
+  PnP cards are not shadowed if PnP data indicates no shadowing.
+  Boot device flag cleared out if no boot device.
+* Removed delays apparent when Sony CD-ROM drives are initialized.
+* Fixed miscellaneous APM bugs.
+* Fixed Int 15h, function C8h call. (DCS #3784)
+* Added auto configuration of Trio 64 Feature Connector based on the amount of
+  video DRAM that is detected. (DCS #3818)  
+
+
+Beta 2.07	Internal use only.
+
+* Incorporated S3 Video BIOS Version 1.3-08-09-57mhz.
+* Added DDC1 Monitor support code in POST and Setup.
+* Additional text translation for DDC1 monitor support.
+* Enhanced IDE initialization. Eliminated IDE pre-delay.
+* Corrected ISA Legacy resource bitmap.
+* Fixed time/date format in Product Data window.
+
+
+Beta 2.06   -   Build 34
+
+* Incorporated S3 Video BIOS Version 1.3-08-04-57MHz.
+* Corrected reference to Serial port help text.
+* Updated language files.
+* Incorporated translation updates for READING from Paul Kalendra.
+
+
+
+Beta 2.05	Internal use only.
+
+* Reset IDE hard disk subsystem prior to sending 'Hard' reset command to
+  chipset.
+* Updated language files.
+* Updated Set up program to accommodate changes in language files.
+* Increased IDE hard disk pre-delay from 5 seconds to 17 seconds.
+
+
+Beta 2.04   -   Build 27
+
+* Enhanced PCI bridge support.
+* Changed scan order of parallel ports.
+* Implemented workaround for IBM Ethernet adaptors hanging system.
+* Increased ATAPI reset time from 150uS to 900uS.
+* Added Brazilian language support.
+* Increased diskette recalibration retries to fix 'Diskette Error' after
+  ELP testing.
+
+
+Beta 2.03   -   Build 26
+
+* Increased hard disk pre-delay from 3 to 5 seconds for IBM 1GB drive.
+* Corrected ATAPI code to handle multiple CD-ROM drives.
+* Corrected ATAPI code to handle IBM 4X CD-ROM drives.
+* Increased granularity of ROM shadowing.
+* Corrected PnP code to handle PnP ISA cards with option ROM's correctly.
+* Loaded 850 code page during POST and setup for multi-language support.
+* Pilot for multi-language support.
+* Autosized IDE drive 'Not Installed' message in setup for multi-language support.
+* Corrected flash update utility to handle Australian language update properly.
+* Added Win'95 enhanced APM code.
+* Corrected IBM specific Int.15h power management function.
+* Added line printer enhancements.
+* Incorporated new S3 BIOS.
+
+
+Beta 2.02
+
+* Corrected default loading and restoring of ROM shadowing parameters.
+* Made C0000h-C8000h range non-changeable in ROM shadowing screen.
+
+
+Beta 2.01
+
+* Corrected manufacturing parallel port initialization.
+* Changed ROM shadowing defaults.
+* Fixed PnP code to interprete ROM shadowing configuration correctly.
+
+
+Release 1.0
+
+* Fixed PnP code to work with Future Domain SCSI controller (3177).
+
+
+Beta 1.12
+
+* Setup exit window - query to save (3048).
+* IDE CD-ROM setup window (3232).
+* F1 Icon - display error 1962 (3321).
+* IDE Hardfile startup selection: removed support for Hardfile 1 (3183).
+* Password prompts: Use text from MRI (3238).
+* Disable floppy boot if  diskette drive access is disabled (3318).
+* Disable shadowing.
+* Help screen problems fixed.
+* Video setup 1600x1200 default set to Not Supported.
+* 85 Hz video support fixed.
+* Password type on numeric keypad.
+* Triton linear frame buffer enabled.
+* Setup defaults changed to match IBM PC300.
+* Parallel port mode in setup.
+* Change indicator for Parallel & Serial port conflicts.
+
+
+Beta 1.11
+
+* Update utility fails on first try fixed.
+* Setup display memory size > 64 Mb.
+* Time update appear over help window fixed.
+* Support password type on numeric keypad.
+* Parallel port default to 3BCh.
+
+
+Beta 1.10
+
+* Added support for new S3 video table with 85 Hz refresh rate.
+* Horizontal sweep range in CMOS register 4Eh-4Fh fixed.
+* Updated the Setup program to support  70, 80, and 90 Second APM time-out.
+* EPP fixed. Parallel port address initialized in BIOS data segment.
+* Power-on password displays "Your system is now locked...".
+* Fixed Interrupt 15h, function 4A. Return correct video sweep range.
+* Setup Post Error window fixed.
+* Interrupt 15h, function 2308, ID 5354 fixed. Disable APM  if input = 0.
+* Interrupt 15h, function 2307, ID 5354 fixed. Return timeout value in BCD format.
+
+
+Beta 1.09	Internal use only.
+
+* DCS - verification - please see list.
+* ECP fixed.
+* Added support for 85Hz video refresh rates.
+* INIT 15 - C7 function fixed.
+* WIN '95 fixes put in BIOS.
+* QA Plus lock up resolved - still fails cache test.
+* 120 Mhz reflected correctly in  Setup.
+* Setup POP screen corruption fixed.
+* Date/Time fixed.
+* Video BIOS using - 1.3-08-03.
+* Video Drivers used in testing - 1.41B2
+
+
+Beta 1.08
+
+* DCS - verification
+  - 3210; 3218,3318;3337 (suggest Driver issue);
+  - 3338 (lockup fixed - still investigating);
+  - 3339 (suggest way Intel's Plug & Play works).
+* ISA Legacy  defaults changed to available
+* Setup & CMOS in sync.
+* Slow Boot - should be faster.
+* Help file in place and scrolling.
+* Password Security - password "off" should not prompt.
+* Diskette/Harddisk disable does not work.
+* Boot sequence.
+* Change indicator - setup working.
+* Mode 3/4 default to lowest value.
+* Floppy installation of Windows & OS/2.
+* Flash Utility - in  EMT like format.
+* Warp lockup.
+
+	
+Beta 1.07
+
+* CD-ROM reset code.
+* APM instant-on fix for OS/2.
+* Floppy fix for 2.88 Mb and 1.44 Mb.
+* 85 Hz refresh rate support in Setup.
+* ISA Legacy information in Setup.
+* On-line help text.
+
+
+Beta 1.06
+
+* Enhanced Floppy disk driver. Provide support for PC-DOS 7.0 installation.
+* Implemented IBM Boot Device support (Bootstrap Sources).
+* Corrected CMOS bit definition for video 1600x1200 refresh rate.
+* Fixed Interrupt 15h, Function 2308h, ID 5354h:
+* Converted BCD input data to Decimal.
+* Disabled Setup when IBM manufacturing diskette is present.
+
+
+Beta 1.05
+
+* Fixed bug to support Intel Manufacturing test.
+
+
+Beta 1.04
+
+* New S3 Video driver with Interrupt 15h support.
+* Included IBM POST and Runtime error messaging.
+* Enhanced Flash update core code.
+
+
+Beta 1.03
+
+* Incorporated new S3 video BIOS version 1.4-01 to fix OS/2 video problem.
+* Switched 32-bit IDE support Per Eric Holley's request. 32-bit IDE support
+  is disabled when in compatible mode and enabled when in high performance
+  mode.
+
+
+Beta 1.02
+
+* Core flash routines amended to correct problem which caused intermittent
+  flash programming/verification errors.
+
+
+Beta 1.01
+
+* Initial Beta Release
+
+-----------------------------------------------------------------------------
+
+
+To Be Addressed:
+
+* IBM 5250 Network test failures.
+* DDC monitor test issues.
+
+
+Features Not Supported in BIOS:
+
+* Holding down both mouse buttons, reset system.
+* F9 (Post error log).
+* Boot from secondary IDE controller.
+	
+
+
+
