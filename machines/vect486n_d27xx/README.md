@@ -1,7 +1,6 @@
 # HP Vectra 486N (D27xxA)
 
-Extracted from the supplied HP `VB0409US.BIN` (262160 bytes), removing the
-16-byte updater header. The original firmware is unmodified.
+The extracted HP firmware is unmodified; the updater header is not included.
 
 - `v0409-flash.rom`: complete 256 KB V.04.09 flash, system BIOS dated 04/11/95,
   including Setup D.04.03 and error-message modules.
@@ -16,7 +15,6 @@ V.04.04, V.04.07 and V.04.08 are documented but were not recovered.
 SHA-256:
 
 ```
-af9d4f33ba116ec23387caf8dfe8b73b9917a506b16740f2324ec4dceda2cc6f  VB0409US.BIN
 70e759b6a6a69c680f6be67e3dc8cc94eebb90b843de66c451f3adf5792c6167  v0409-flash.rom
 b52dcbf4823ea3414fafb698836fdb98eb88dc4f7e83913ac3f1b764d5fa6806  vga10100.rom
 ```
